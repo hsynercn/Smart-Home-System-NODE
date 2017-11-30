@@ -1,0 +1,37 @@
+
+
+DO NOT USE GENERIC TYPES LIKE
+-int
+-char
+USE CLEAR DEFINITONS
+
+
+ARDUINO UNO SPECIFIC TABLE
+(use for conversation)
+
+boolean         8 bit   uint8_t
+byte            8 bit   uint8_t
+char            8 bit   uint8_t
+unsigned char   8 bit   uint8_t
+word            16 bit  uint16_t
+int             16 bit  int16_t
+unsigned int    16 bit  uint16_t
+long            32 bit  int32_t
+unsigned long   32 bit  int32_t
+float           32 bit  float
+double
+
+
+--- Variable type: Size in SRAM (bytes) ---
+uint8_t: 1
+boolean: 1
+char: 1
+unsigned char: 1
+byte: 1
+int: 2
+unsigned int: 2
+word: 2
+long: 4
+unsigned long: 4
+float: 4
+double: 4

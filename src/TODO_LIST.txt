@@ -1,0 +1,70 @@
+
++++-ArduinoSoftwareSerial implement edilecek
+    ->Delegated constructer implement edildi, düzenleme gerekli  +
+    ->Software serialin diğer metodları tanımlanacak ve implement edilecek +
+
+
+----Typedef tanımlaması yapılmalı yoksa hangi değişkenin ne olduğu karışacak, Arduino kütüphanesi uint8_t gibi
+    kaba tipler kullanıyor, bu tipler için char, int long int çevirimi yapılabilir ama değişkenler orjinal
+    formatta olmalı, tip tanımlaması için typedef şart
+    ->GENERIC TYPE geçişi yapıldı, paltforma göre değişen tipler kullanılmıyor +
+
+-EspConnection methodlar implement edilecek
+
+        +++String receiveResponse();
+        +++String sendSendAtCommand();
+        +++void powerOn();
+        +++void powerOff();
+        +++bool connectWifi();
+        +++bool checkEsp();
+        +++bool checkWifiConnection();
+        +++postHTTP();
+        +++void cipStart();
+        +++void cipSend();
+        +++deliverPayload();
+
+        +++connect() için wifi id ve pass yönelik " karakteri eklemesi
+
+        +++postAndReceiveHTTP()
+            ->Harici buffera cevap okunması tamamlandı
+
+        ->lokal değişkenler kullanıma alınacak
+            ->kullanılanlar denetlenmeli
+
++++**Esp içindeki search in sequence servisini utilitye taşıyabilrisin, ihtiyaç duyacaksın ilerde
+
++++***ISerial için advancedRead implement edilecek başlangıç ve bitiş karakterli
+
+
+
+
+-ATTENTION: Esp iletişimi cevap alıp vermenin bekleme ile yapıldığı bit teknikle gerçekleştirilmeli, software serial çok kolay
+    overflow oluyor, hatta mesaj kabül etmiyor. Aynı yekleşım ESP için de kullanılabilir!!!
+    +UPDATE: Overflow uzun mesajlarda ne olursa olsun engellenemez, örneğin CW+LAP.
+    ->Char by char ve önceden tanımlanmış buffer alanları ile iletişim düzenlendi. +
+
+
++++***GENEL: Tüm fonksiyonlarda parametreler genel parametrelere dönüştürülecek. +
++++***GENEL: Tüm fonksiyonlarda String aktarımı boyutlu hale getirilecek.         +
++++****GENEL: PROGMEM KULLAN!!!
++++****GENEL: PROGMEM'i HTTP için kullan
+    ->const değişkenler normal değişkneler gibi kullanılamıyor, kopyalama servisi gerekebilir
+    ->cons şeyler kullanmak külfek şimdilik gerekli değil
+
+****GENEL: SERIAL ZAMANLARI ELDEN GEÇİRİLECEK!!!
+
++++**Main node kayıt ve okuma test edileck
+
+***ArduinoMainNode
+    +++->idStamp metodu için başlangıcı belirle
+    ->getIdentity için kimlik oluştur
+
+****ArduinoMainNode kontrol komutları belirlenmeli
+        ->zaman aralığı ayarlama
+        ->güvenlik verisi değişitirme-ID-PASS
+
+***Komut ayrıştırma için mekanizma gerekli
+    ->Misc içinde ayırma fonksiyonu yazılabilir
+    ->Ayırıma göre yönlendirme main içinde yazılabilir
+
+*****IR kontroller nesnesi implement edilecek
