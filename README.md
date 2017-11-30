@@ -1,0 +1,2 @@
+# NODE
+Sensor network node
